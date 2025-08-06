@@ -1,0 +1,20 @@
+{
+  "name": "todo-server",
+  "version": "1.0.0",
+  "description": "Backend server for Todo application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
