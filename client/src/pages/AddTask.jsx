@@ -3,6 +3,7 @@ import { taskAPI } from '../services/api'
 
 const AddTask = ({ onTaskAdded }) => {
   const [task, setTask] = useState('');
+  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -12,11 +13,11 @@ const AddTask = ({ onTaskAdded }) => {
       try {
         await taskAPI.createTask({ 
           title: task.trim(),
-          description: '' 
+          description: description.trim() 
         });
-        console.log('Task added successfully!');
-        setTask(''); // Clear input after adding
-        if (onTaskAdded) onTaskAdded(); // Refresh task list
+        setTask(''); 
+        setDescription('');
+        if (onTaskAdded) onTaskAdded(); 
       } catch (error) {
         console.error('Failed to add task:', error);
         alert('Failed to add task. Please try again.');
@@ -27,42 +28,43 @@ const AddTask = ({ onTaskAdded }) => {
   };
 
   return (
-    <div className="w-full">
-      <h2 className='text-2xl font-bold text-center mb-4 text-gray-800'>Add New Task</h2>
-      <form onSubmit={handleSubmit} className='flex gap-2'>
-        <input
-          type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          placeholder="Enter your task..."
-          className='flex-1 px-4 py-2 border border-gray-300 rounded-lg '
-        />
+    <div className="w-full max-w-2xl mx-auto">
+      <h2 className='text-3xl font-light text-center mb-8 text-gray-900'>Add New Task</h2>
+      <form onSubmit={handleSubmit} className='space-y-4'>
+        <div>
+          <input
+            type="text"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            placeholder="Task title..."
+            className='w-full px-4 py-3 border border-gray-300 rounded-none bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black transition-colors'
+            required
+          />
+        </div>
+        
+        <div>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Task description (optional)..."
+            rows={3}
+            className='w-full px-4 py-3 border border-gray-300 rounded-none bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black transition-colors resize-none'
+          />
+        </div>
+
         <button
           type="submit"
           disabled={loading}
-          className={`px-6 py-2 text-white rounded-lg ${
-            loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
+          className={`w-full py-3 px-6 rounded-none font-medium transition-colors ${
+            loading 
+              ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+              : 'bg-black text-white hover:bg-gray-800'
           }`}
         >
-          {loading ? 'Adding...' : 'Add'}
+          {loading ? 'Adding...' : 'Add Task'}
         </button>
       </form>
-
-            {/* <div className="user-data">
-                  <h3>Your Data:</h3>
-                  {userAllData.map((items) =>(
-                     <ul key={items._id}>
-                        <span>{items.user}</span>
-                        <button onClick={() => handleDelete(items._id)}>
-                          Delete
-                        </button>
-                      </ul>
-                  ))}
-             </div> */}
-
     </div>
-
-    
   )
 }
 

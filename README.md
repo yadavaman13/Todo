@@ -1,16 +1,29 @@
 # 📝 Todo Application
 
-A modern full-stack Todo application with React frontend and Node.js backend.
+A modern full-stack Todo application with React frontend and Node.js backend, featuring a minimalistic black/white design and comprehensive task management capabilities.
 
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen) ![React](https://img.shields.io/badge/React-18+-blue) ![Node.js](https://img.shields.io/badge/Node.js-16+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-Latest-darkgreen)
 
 ## ✨ Features
 
-- ✅ **CRUD Operations** - Create, read, update, delete tasks
-- ✅ **Real-time Updates** - Instant UI updates
-- ✅ **Task Status** - Mark tasks as complete/incomplete
-- ✅ **Responsive Design** - Works on all devices
-- ✅ **Error Handling** - User-friendly error messages
+- ✅ **Full CRUD Operations** - Create, read, update, delete tasks
+- ✅ **Task Descriptions** - Add detailed descriptions to tasks
+- ✅ **Minimalistic Design** - Clean black/white interface
+- ✅ **Task Status Management** - Mark tasks as complete/incomplete
+- ✅ **Expandable Content** - Show more/less for long descriptions
+- ✅ **Real-time Updates** - Instant UI updates after operations
+- ✅ **Responsive Design** - Works perfectly on all devices
+- ✅ **Error Handling** - User-friendly error messages and loading states
+- ✅ **Custom Icons** - Clean SVG icons for all actions
+
+## 🎨 Design Philosophy
+
+This Todo app follows a **minimalistic design approach** with:
+- **Black & White Color Scheme** - Professional, distraction-free interface
+- **Clean Typography** - Light, modern fonts for better readability  
+- **Spacious Layout** - Ample white space for visual clarity
+- **Subtle Interactions** - Smooth hover states and transitions
+- **Custom UI Components** - Tailored checkboxes, buttons, and form elements
 
 ## 🚀 Quick Start
 
@@ -74,31 +87,60 @@ Todo/
 
 ## 🔌 API Reference
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/tasks` | Get all tasks |
-| `POST` | `/api/tasks` | Create task |
-| `PUT` | `/api/tasks/:id` | Update task |
-| `DELETE` | `/api/tasks/:id` | Delete task |
+| Method | Endpoint | Description | Request Body |
+|--------|----------|-------------|---------------|
+| `GET` | `/api/tasks` | Get all tasks | None |
+| `POST` | `/api/tasks` | Create task | `{ "title": "string", "description": "string" }` |
+| `PUT` | `/api/tasks/:id` | Update task | `{ "title": "string", "description": "string", "completed": boolean }` |
+| `DELETE` | `/api/tasks/:id` | Delete task | None |
 
 ### Example Usage
 ```javascript
 // Get all tasks
 fetch('http://localhost:5000/api/tasks')
 
-// Create task
+// Create task with description
 fetch('http://localhost:5000/api/tasks', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ title: 'New Task' })
+  body: JSON.stringify({ 
+    title: 'Complete project', 
+    description: 'Finish the Todo app with all features' 
+  })
+})
+
+// Update task
+fetch('http://localhost:5000/api/tasks/TASK_ID', {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ 
+    title: 'Updated title',
+    description: 'Updated description',
+    completed: true 
+  })
 })
 ```
 
-## �️ Tech Stack
+## 🛠️ Tech Stack
 
-**Frontend:** React, Tailwind CSS, React Router  
-**Backend:** Node.js, Express, MongoDB, Mongoose  
-**Tools:** Vite, Nodemon, CORS
+**Frontend:** React 18+, Tailwind CSS, React Router DOM  
+**Backend:** Node.js, Express.js, MongoDB, Mongoose  
+**Tools:** Vite, Nodemon, CORS  
+**Design:** Custom CSS, SVG Icons, Responsive Layout
+
+## 🎯 Key Components
+
+### Frontend Components
+- **AddTask** - Task creation form with title and description inputs
+- **ShowTask** - Task display with inline editing, completion toggle, and expandable descriptions
+- **HomePage** - Main container with state management and API integration
+- **Navbar** - Minimalistic navigation with clean typography
+
+### Backend Structure
+- **Task Model** - MongoDB schema with title, description, completion status, and timestamps
+- **Task Controller** - Business logic for all CRUD operations
+- **Task Routes** - RESTful API endpoints
+- **Error Handling** - Comprehensive error responses and validation
 
 ## � Screenshots
 

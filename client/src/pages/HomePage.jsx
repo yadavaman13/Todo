@@ -27,19 +27,22 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
-      <div className='border-3 border-red-500 h-auto min-h-150 w-150 flex flex-col justify-start mx-auto mt-5 p-6'>
-        <AddTask onTaskAdded={fetchTasks} />
+    <div className='min-h-screen bg-gray-50'>
+      <div className='max-w-4xl mx-auto px-6 py-12'>
+        <div className='mb-16'>
+          <AddTask onTaskAdded={fetchTasks} />
+        </div>
         
         {loading ? (
-          <div className="text-center py-4">
-            <p className="text-gray-500">Loading tasks...</p>
+          <div className="text-center py-12">
+            <div className="inline-block w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin"></div>
+            <p className="text-gray-500 mt-4 font-light">Loading tasks...</p>
           </div>
         ) : (
           <Showtask tasks={tasks} onTaskUpdated={fetchTasks} />
         )}
       </div>
-    </>
+    </div>
   )
 }
 
